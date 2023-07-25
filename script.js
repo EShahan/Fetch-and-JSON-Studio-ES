@@ -13,15 +13,24 @@ window.addEventListener("load", function() {
                         <h3>${json[index].firstName} ${json[index].lastName}</h3>
                         <ul>
                             <li>Hours in space: ${json[index].hoursInSpace}</li>
-                            <li>Active: ${json[index].active}</li>
+                            <li id="active${index}">Active: ${json[index].active}</li>
                             <li>Skills: ${json[index].skills}</li> 
                         </ul>
                     </div>
                     <img class="avatar" src=${json[index].picture}>
                 </div>
                 `;
+                const active = document.getElementById(`active${index}`);
+                if (json[index].active === true) {
+                    active.style.color = "green";
+                }
+                else {
+                    active.style.color ="red";
+                }
                 index = (index + 1) % json.length;
             }
+            let astronautsHeader = document.querySelector("h1");
+            astronautsHeader.innerHTML += ` (${json.length})`
             //TODO: Skills has no spacing
         });
     });
